@@ -8,6 +8,7 @@ type User = {
 }
 
 export default async function UsersServer() {
+    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
     const res = await fetch('https://jsonplaceholder.typicode.com/users');
 
  
