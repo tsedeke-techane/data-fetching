@@ -1,4 +1,5 @@
-type post = {
+import Author from "./author";
+type Post = {
     userId: number;
     id: number;
     title: string;
@@ -8,7 +9,7 @@ type post = {
 export default async function PostSequential() {
     await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
     const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-    const posts: post[] = await res.json();
+    const posts: Post[] = await res.json();
 
     const filteredPosts = posts.filter(post => post.userId % 10 === 1);
 
@@ -24,7 +25,7 @@ export default async function PostSequential() {
                         <h2 className="text-xl font-semibold text-green-700 mb-2">{post.title}</h2>
                         <p className="text-gray-700">{post.body}</p>
 
-                        <p></p>
+                        <Author userId={post.userId} />
                     </li>
                 ))}
             </ul>
